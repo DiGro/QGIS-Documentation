@@ -257,7 +257,7 @@ Environment variables
 
 * **QGIS_OPTIONS_PATH**: The variable specifies path to directory with settings. 
   It works the same ways as QGIS application --optionspath option. It is looking 
-  for settings file in <QGIS_OPTIONS_PATH>/QGIS/QGIS2.ini. For exaple, to set 
+  for settings file in <QGIS_OPTIONS_PATH>/QGIS/QGIS2.ini. For example, to set 
   QGIS server on Apache to use /path/to/config/QGIS/QGIS2.ini settings file, 
   add to Apache config:
 
