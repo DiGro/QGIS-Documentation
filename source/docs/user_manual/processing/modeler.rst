@@ -298,7 +298,7 @@ have to worry about saving it, since it is done automatically.
 About available algorithms
 --------------------------
 
-You might notice that some algorithms that can be be executed from the toolbox
+You might notice that some algorithms that can be executed from the toolbox
 do not appear in the list of available algorithms when you are designing a model. To be
 included in a model, an algorithm must have a correct semantic, so as to be
 properly linked to others in the workflow. If an algorithm does not have such a
