@@ -104,7 +104,7 @@ We first need to load the data to work with.
 #. In the dialog that pops up we filter these features with the
    following expression::
 
-     "highway" NOT IN ('footway', 'path', 'unclassified', 'track') AND "highway" != NULL
+     "highway" NOT IN ('footway', 'path', 'unclassified', 'track') OR "highway" != NULL
 
    The concatenation of the two operators ``NOT`` and ``IN`` excludes
    all the features that have these attribute values in the
