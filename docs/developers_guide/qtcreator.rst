@@ -1,14 +1,14 @@
 
 ************************************************
- Getting up and running with QtCreator and QGIS
+ Getting up and running with Qt Creator and QGIS
 ************************************************
 
 .. contents::
    :local:
 
 
-QtCreator is an IDE from the makers of the `Qt library <https://www.qt.io>`_.
-With QtCreator you can build any C++ project, but it's really optimised for
+Qt Creator is an IDE from the makers of the `Qt library <https://www.qt.io>`_.
+With Qt Creator you can build any C++ project, but it's really optimised for
 people working on Qt based applications (including mobile apps).
 
 
@@ -41,7 +41,7 @@ On our system we have checked out the code into ``$HOME/dev/cpp/QGIS`` and the
 rest of the article is written assuming that. You should update these paths as
 appropriate for your local system.
 
-After launching QtCreator do :menuselection:`File --> Open File or Project`
+After launching Qt Creator do :menuselection:`File --> Open File or Project`
 
 Then use the resulting file selection dialog to browse to and open this file:
 
@@ -51,7 +51,7 @@ Then use the resulting file selection dialog to browse to and open this file:
 
 .. image:: img/selectCMakeLists.png
 
-QtCreator will parse the project and you will be prompted for a build location
+Qt Creator will parse the project and you will be prompted for a build location
 and options in the :guilabel:`Configure Project` dialog.
 
 Since we want QGIS to have debugging capabilities we will only enable the
@@ -61,7 +61,7 @@ debug entry and fill it with our build location:
    entry
 #. Uncheck all but the |checkbox| :guilabel:`Debug` sub item
 #. Fill the path with the build directory. For our purpose, we create a
-   specific build dir for QtCreator:
+   specific build dir for Qt Creator:
 
    .. code-block:: bash
 
@@ -74,7 +74,7 @@ debug entry and fill it with our build location:
       :width: 100%
 
 That's the basics of it. Press the :guilabel:`Configure Project` button and
-QtCreator will start scanning the source tree for autocompletion support and
+Qt Creator will start scanning the source tree for autocompletion support and
 do some other housekeeping stuff in the background.
 
 .. image:: img/configurationDone.png
@@ -86,7 +86,7 @@ We want to tweak a few things before we start to build.
 Setting up your build environment
 ==================================
 
-Click on the :guilabel:`Projects` icon on the left of the QtCreator window.
+Click on the :guilabel:`Projects` icon on the left of the Qt Creator window.
 
 .. image:: img/leftPanel.png
 
@@ -180,7 +180,7 @@ directory.
 
     .. image:: img/image07.jpeg
 
-    You are almost ready to build. Just one note: QtCreator will need write
+    You are almost ready to build. Just one note: Qt Creator will need write
     permissions on the install prefix. By default (which I am using here) QGIS is
     going to get installed to ``/usr/local/``. For my purposes on my development
     machine, I just gave myself write permissions to the /usr/local directory.
@@ -194,7 +194,7 @@ directory.
     =============================
 
     As mentioned above, we cannot run QGIS from directly in the build directly, so
-    we need to create a custom run target to tell QtCreator to run QGIS from the
+    we need to create a custom run target to tell Qt Creator to run QGIS from the
     install dir (in my case ``/usr/local/``). To do that, return to the projects
     configuration screen.
 
