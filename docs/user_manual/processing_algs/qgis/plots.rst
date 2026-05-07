@@ -46,6 +46,8 @@ Parameters
    * - **Title**
 
        Optional
+
+       ``Added in 3.42``
      - ``TITLE``
      - [string]
 
@@ -54,6 +56,8 @@ Parameters
    * - **X-axis Title**
 
        Optional
+
+       ``Added in 3.42``
      - ``XAXIS_TITLE``
      - [string]
 
@@ -63,6 +67,8 @@ Parameters
    * - **Y-axis Title**
 
        Optional
+
+       ``Added in 3.42``
      - ``YAXIS_TITLE``
      - [string]
 
@@ -157,6 +163,8 @@ Parameters
    * - **Title**
 
        Optional
+
+       ``Added in 3.42``
      - ``TITLE``
      - [string]
 
@@ -165,6 +173,8 @@ Parameters
    * - **X-axis Title**
 
        Optional
+
+       ``Added in 3.42``
      - ``XAXIS_TITLE``
      - [string]
 
@@ -174,6 +184,8 @@ Parameters
    * - **Y-axis Title**
 
        Optional
+
+       ``Added in 3.42``
      - ``YAXIS_TITLE``
      - [string]
 
@@ -223,6 +235,7 @@ Python code
 
 Generate elevation profile image
 --------------------------------
+``Added in 3.42``
 
 Creates an elevation profile image from a list of map layers and an optional terrain layer.
 
@@ -727,6 +740,8 @@ Parameters
    * - **Hover text**
 
        Optional
+
+       ``Added in 3.42``
      - ``HOVERTEXT``
      - [expression]
 
@@ -736,6 +751,8 @@ Parameters
    * - **Title**
 
        Optional
+
+       ``Added in 3.42``
      - ``TITLE``
      - [string]
 
@@ -744,6 +761,8 @@ Parameters
    * - **X-axis Title**
 
        Optional
+
+       ``Added in 3.42``
      - ``XAXIS_TITLE``
      - [string]
 
@@ -753,6 +772,8 @@ Parameters
    * - **Y-axis Title**
 
        Optional
+
+       ``Added in 3.42``
      - ``YAXIS_TITLE``
      - [string]
 
@@ -760,12 +781,17 @@ Parameters
      - If empty, the field name of the y attribute is used.
        With a single space, the axis title is not shown.
    * - **Use logarithmic scale for x-axis**
+
+       ``Added in 3.42``
+
      - ``XAXIS_LOG``
      - [boolean]
 
        Default: False
      - When enabled, uses logarithmic scale for the x-axis
    * - **Use logarithmic scale for y-axis**
+
+       ``Added in 3.42``
      - ``YAXIS_LOG``
      - [boolean]
 
@@ -852,6 +878,8 @@ Parameters
    * - **Title**
 
        Optional
+
+       ``Added in 3.42``
      - ``TITLE``
      - [string]
 
@@ -860,6 +888,8 @@ Parameters
    * - **X-axis Title**
 
        Optional
+
+       ``Added in 3.42``
      - ``XAXIS_TITLE``
      - [string]
 
@@ -868,6 +898,8 @@ Parameters
    * - **Y-axis Title**
 
        Optional
+
+       ``Added in 3.42``
      - ``YAXIS_TITLE``
      - [string]
 
@@ -876,6 +908,8 @@ Parameters
    * - **Z-axis Title**
 
        Optional
+
+       ``Added in 3.42``
      - ``ZAXIS_TITLE``
      - [string]
 

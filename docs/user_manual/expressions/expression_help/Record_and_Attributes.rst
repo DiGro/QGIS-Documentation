@@ -144,7 +144,7 @@ If the function is called with both a layer and a feature, it will evaluate the 
    :widths: 15 85
 
    * - Syntax
-     - display_expression(layer, feature, [evaluate=true])
+     - display_expression(layer, feature, [evaluate:=true])
 
        [] marks optional arguments
    * - Arguments
@@ -409,7 +409,7 @@ If the function is called with both a layer and a feature, it will evaluate the 
    :widths: 15 85
 
    * - Syntax
-     - maptip(layer, feature, [evaluate=true])
+     - maptip(layer, feature, [evaluate:=true])
 
        [] marks optional arguments
    * - Arguments
@@ -434,7 +434,7 @@ Returns the number of selected features on a given layer. By default works on th
    :widths: 15 85
 
    * - Syntax
-     - num_selected([layer=current layer])
+     - num_selected([layer:=current layer])
 
        [] marks optional arguments
    * - Arguments
@@ -582,13 +582,13 @@ When the database parameter is a layer and the layer is in transaction mode, the
 uuid
 ....
 
-Generates a Universally Unique Identifier (UUID) for each row using the Qt `QUuid::createUuid <https://doc.qt.io/qt-5/quuid.html#createUuid>`_ method.
+Generates a Universally Unique Identifier (UUID) for each row using the Qt `QUuid::createUuid <https://doc.qt.io/qt-6/quuid.html#createUuid>`_ method.
 
 .. list-table::
    :widths: 15 85
 
    * - Syntax
-     - uuid([format='WithBraces'])
+     - uuid([format:='WithBraces'])
 
        [] marks optional arguments
    * - Arguments

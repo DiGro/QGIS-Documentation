@@ -899,6 +899,7 @@ After setting the attribute, value, and optional filter, digitize a selection us
    Only points in front of the camera’s near plane (i.e. currently rendered)
    are considered; points behind the camera are ignored.
 
+
 .. Substitutions definitions - AVOID EDITING PAST THIS LINE
    This will be automatically updated by the find_set_subst.py script.
    If you need to create a new substitution manually,
@@ -933,8 +934,6 @@ After setting the attribute, value, and optional filter, digitize a selection us
    :width: 1.5em
 .. |multibandColor| image:: /static/common/multibandColor.png
    :width: 1.5em
-.. |options| image:: /static/common/mActionOptions.png
-   :width: 1em
 .. |paletted| image:: /static/common/paletted.png
    :width: 1.5em
 .. |pointCloudExtent| image:: /static/common/pointCloudExtent.png

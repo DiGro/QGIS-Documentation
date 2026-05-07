@@ -496,7 +496,7 @@ Print Layout
   |addChart|               ``|addChart|``
   |label|                  ``|label|``                  |scaleBar|               ``|scaleBar|``
   |select|                 ``|select|``                 |moveItemContent|        ``|moveItemContent|``
-  |layers|                 ``|Layers|``
+  |layers|                 ``|layers|``
   |setToCanvasScale|       ``|setToCanvasScale|``       |setToCanvasExtent|      ``|setToCanvasExtent|``
   |viewScaleInCanvas|      ``|viewScaleInCanvas|``      |viewExtentInCanvas|     ``|viewExtentInCanvas|``
   |raiseItems|             ``|raiseItems|``             |lowerItems|             ``|lowerItems|``
@@ -704,9 +704,9 @@ Grass integration
    :width: 1.5em
 .. |addExpression| image:: /static/common/mActionAddExpression.png
    :width: 1.5em
-.. |addGeometryAttributes| image:: /static/common/mAlgorithmAddGeometryAttributes.png
-   :width: 1.5em
 .. |addGeoPackageLayer| image:: /static/common/mActionAddGeoPackageLayer.png
+   :width: 1.5em
+.. |addGeometryAttributes| image:: /static/common/mAlgorithmAddGeometryAttributes.png
    :width: 1.5em
 .. |addGpsLayer| image:: /static/common/mActionAddGpsLayer.png
    :width: 1.5em

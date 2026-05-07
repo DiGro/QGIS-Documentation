@@ -97,7 +97,7 @@ Basic parameters
        (extent, CRS, pixel dimensions)
    * - **Output layer**
      - ``OUTPUT``
-     - [same as input]
+     - [raster]
 
        Default: ``[Save to temporary file]``
      - Specification of the output raster. :ref:`One of <output_parameter_widget>`:
@@ -127,6 +127,8 @@ Advanced parameters
    * - **Creation options**
 
        Optional
+
+       ``Added in 3.40``
      - ``CREATION_OPTIONS`` (for QGIS <= 3.42, this was ``CREATE_OPTIONS``)
      - [string]
 
@@ -276,7 +278,7 @@ Basic parameters
        (extent, CRS, pixel dimensions)
    * - **Output layer**
      - ``OUTPUT``
-     - [same as input]
+     - [raster]
 
        Default: ``[Save to temporary file]``
      - Specification of the output raster. :ref:`One of <output_parameter_widget>`:
@@ -306,6 +308,8 @@ Advanced parameters
    * - **Creation options**
 
        Optional
+
+       ``Added in 3.40``
      - ``CREATION_OPTIONS`` (for QGIS <= 3.42, this was ``CREATE_OPTIONS``)
      - [string]
 
@@ -457,7 +461,7 @@ Basic parameters
        (extent, CRS, pixel dimensions)
    * - **Output layer**
      - ``OUTPUT``
-     - [same as input]
+     - [raster]
 
        Default: ``[Save to temporary file]``
      - Specification of the output raster. :ref:`One of <output_parameter_widget>`:
@@ -487,6 +491,8 @@ Advanced parameters
    * - **Creation options**
 
        Optional
+
+       ``Added in 3.40``
      - ``CREATION_OPTIONS`` (for QGIS <= 3.42, this was ``CREATE_OPTIONS``)
      - [string]
 
@@ -643,7 +649,7 @@ Basic parameters
        from (extent, CRS, pixel dimensions)
    * - **Output layer**
      - ``OUTPUT``
-     - [same as input]
+     - [raster]
 
        Default: ``[Save to temporary file]``
      - Specification of the output raster. :ref:`One of <output_parameter_widget>`:
@@ -675,6 +681,8 @@ Advanced parameters
    * - **Creation options**
 
        Optional
+
+       ``Added in 3.40``
      - ``CREATION_OPTIONS`` (for QGIS <= 3.42, this was ``CREATE_OPTIONS``)
      - [string]
 
@@ -802,7 +810,7 @@ Basic parameters
        will result in a NoData cell in the output raster
    * - **Output layer**
      - ``OUTPUT``
-     - [same as input]
+     - [raster]
 
        Default: ``[Save to temporary file]``
      - Specification of the output raster. :ref:`One of <output_parameter_widget>`:
@@ -834,6 +842,8 @@ Advanced parameters
    * - **Creation options**
 
        Optional
+
+       ``Added in 3.40``
      - ``CREATION_OPTIONS`` (for QGIS <= 3.42, this was ``CREATE_OPTIONS``)
      - [string]
 
@@ -918,7 +928,7 @@ membership value to each pixel, using a Gaussian membership function.
 Membership values range from 0 to 1.
 In the fuzzified raster, a value of 0 implies no membership of the
 defined fuzzy set, whereas a value of 1 means full membership.
-The gaussian membership function is defined as |gaussian_formula|,
+The gaussian membership function is defined as :math:`\mu(x)=e^{−f_1*(x−f_2)^2}`,
 where *f1* is the spread and *f2* the midpoint.
 
 .. figure:: img/gaussianimage.png
@@ -973,7 +983,7 @@ Basic parameters
      - Spread of the gaussian function
    * - **Fuzzified raster**
      - ``OUTPUT``
-     - [same as input]
+     - [raster]
 
        Default: ``[Save to temporary file]``
      - Specification of the output raster. :ref:`One of <output_parameter_widget>`:
@@ -997,6 +1007,8 @@ Advanced parameters
    * - **Creation options**
 
        Optional
+
+       ``Added in 3.40``
      - ``CREATION_OPTIONS`` (for QGIS <= 3.42, this was ``CREATE_OPTIONS``)
      - [string]
 
@@ -1024,7 +1036,7 @@ Outputs
      - Description
    * - **Fuzzified raster**
      - ``OUTPUT``
-     - [same as input]
+     - [raster]
      - Output raster layer containing the result
    * - **CRS authority identifier**
      - ``CRS_AUTHID``
@@ -1067,7 +1079,7 @@ membership value to each pixel, using a Large membership function.
 Membership values range from 0 to 1.
 In the fuzzified raster, a value of 0 implies no membership of the
 defined fuzzy set, whereas a value of 1 means full membership.
-The large membership function is defined as |fuzzy_large_formula|,
+The large membership function is defined as :math:`\mu(x)={1}/({1+{(x/f_2)}^{-f_1}})`
 where *f1* is the spread and *f2* the midpoint.
 
 .. seealso:: :ref:`qgisfuzzifyrastergaussianmembership`,
@@ -1116,7 +1128,7 @@ Basic parameters
      - Spread of the large function
    * - **Fuzzified raster**
      - ``OUTPUT``
-     - [same as input]
+     - [raster]
 
        Default: ``[Save to temporary file]``
      - Specification of the output raster. :ref:`One of <output_parameter_widget>`:
@@ -1140,6 +1152,8 @@ Advanced parameters
    * - **Creation options**
 
        Optional
+
+       ``Added in 3.40``
      - ``CREATION_OPTIONS`` (for QGIS <= 3.42, this was ``CREATE_OPTIONS``)
      - [string]
 
@@ -1167,7 +1181,7 @@ Outputs
      - Description
    * - **Fuzzified raster**
      - ``OUTPUT``
-     - [same as input]
+     - [raster]
      - Output raster layer containing the result
 
    * - **CRS authority identifier**
@@ -1210,9 +1224,9 @@ Transforms an input raster to a fuzzified raster by assigning a
 membership value to each pixel, using a Linear membership function.
 Membership values range from 0 to 1. In the fuzzified raster, a value
 of 0 implies no membership of the defined fuzzy set, whereas a value
-of 1 means full membership.
-The linear function is defined as |fuzzy_linear_formula|, where *a*
-is the low bound and *b* the high bound. This equation assigns
+of 1 means full membership. The linear function is defined as
+:math:`\mu(x)=\begin{cases}0&\text{x≤a}\\(x-a)/(b-a)&\text{a<x<b}\\1&\text{x≥b}\end{cases}`,
+where *a* is the low bound and *b* the high bound. This equation assigns
 membership values using a linear transformation for pixel values
 between the low and high bounds.
 Pixels values smaller than the low bound are given 0 membership
@@ -1265,7 +1279,7 @@ Basic parameters
      - High bound of the linear function
    * - **Fuzzified raster**
      - ``OUTPUT``
-     - [same as input]
+     - [raster]
 
        Default: ``[Save to temporary file]``
      - Specification of the output raster. :ref:`One of <output_parameter_widget>`:
@@ -1289,6 +1303,8 @@ Advanced parameters
    * - **Creation options**
 
        Optional
+
+       ``Added in 3.40``
      - ``CREATION_OPTIONS`` (for QGIS <= 3.42, this was ``CREATE_OPTIONS``)
      - [string]
 
@@ -1316,7 +1332,7 @@ Outputs
      - Description
    * - **Fuzzified raster**
      - ``OUTPUT``
-     - [same as input]
+     - [raster]
      - Output raster layer containing the result
    * - **CRS authority identifier**
      - ``CRS_AUTHID``
@@ -1359,8 +1375,8 @@ membership value to each pixel, using a Near membership function.
 Membership values range from 0 to 1.
 In the fuzzified raster, a value of 0 implies no membership of the
 defined fuzzy set, whereas a value of 1 means full membership.
-The near membership function is defined as |near_formula|, where
-*f1* is the spread and *f2* the midpoint.
+The near membership function is defined as :math:`\mu(x)={1}/(1+f_1*({x-f_2})²)`,
+where *f1* is the spread and *f2* the midpoint.
 
 .. seealso:: :ref:`qgisfuzzifyrastergaussianmembership`,
   :ref:`qgisfuzzifyrasterlargemembership`,
@@ -1408,7 +1424,7 @@ Basic parameters
      - Spread of the near function
    * - **Fuzzified raster**
      - ``OUTPUT``
-     - [same as input]
+     - [raster]
 
        Default: ``[Save to temporary file]``
      - Specification of the output raster. :ref:`One of <output_parameter_widget>`:
@@ -1432,6 +1448,8 @@ Advanced parameters
    * - **Creation options**
 
        Optional
+
+       ``Added in 3.40``
      - ``CREATION_OPTIONS`` (for QGIS <= 3.42, this was ``CREATE_OPTIONS``)
      - [string]
 
@@ -1459,7 +1477,7 @@ Outputs
      - Description
    * - **Fuzzified raster**
      - ``OUTPUT``
-     - [same as input]
+     - [raster]
      - Output raster layer containing the result
    * - **CRS authority identifier**
      - ``CRS_AUTHID``
@@ -1502,8 +1520,9 @@ membership value to each pixel, using a Power membership function.
 Membership values range from 0 to 1.
 In the fuzzified raster, a value of 0 implies no membership of the
 defined fuzzy set, whereas a value of 1 means full membership.
-The power function is defined as |power_formula|, where *a* is the
-low bound, *b* is the high bound, and *f1* the exponent.
+The power function is defined as
+:math:`\mu(x)=\begin{cases}0&\text{x≤a}\\{(({x-a})/({b-a}))}^{f_1}&\text{a<x<b}\\1&\text{x≥b}\end{cases}`,
+where *a* is the low bound, *b* is the high bound, and *f1* the exponent.
 This equation assigns membership values using the power transformation
 for pixel values between the low and high bounds.
 Pixels values smaller than the low bound are given 0 membership
@@ -1560,7 +1579,7 @@ Basic parameters
      - Exponent of the power function
    * - **Fuzzified raster**
      - ``OUTPUT``
-     - [same as input]
+     - [raster]
 
        Default: ``[Save to temporary file]``
      - Specification of the output raster. :ref:`One of <output_parameter_widget>`:
@@ -1584,6 +1603,8 @@ Advanced parameters
    * - **Creation options**
 
        Optional
+
+       ``Added in 3.40``
      - ``CREATION_OPTIONS`` (for QGIS <= 3.42, this was ``CREATE_OPTIONS``)
      - [string]
 
@@ -1611,7 +1632,7 @@ Outputs
      - Description
    * - **Fuzzified raster**
      - ``OUTPUT``
-     - [same as input]
+     - [raster]
      - Output raster layer containing the result
    * - **CRS authority identifier**
      - ``CRS_AUTHID``
@@ -1654,11 +1675,11 @@ membership value to each pixel, using a Small membership function.
 Membership values range from 0 to 1.
 In the fuzzified raster, a value of 0 implies no membership of the
 defined fuzzy set, whereas a value of 1 means full membership.
-The small membership function is defined as |small_formula|, where
-*f1* is the spread and *f2* the midpoint.
+The small membership function is defined as :math:`\mu(x)=1/({1+{(x/f_2)}^{f_1}})`,
+where *f1* is the spread and *f2* the midpoint.
 
 .. seealso:: :ref:`qgisfuzzifyrastergaussianmembership`,
-  :ref:`qgisfuzzifyrasterlargemembership`
+  :ref:`qgisfuzzifyrasterlargemembership`,
   :ref:`qgisfuzzifyrasterlinearmembership`,
   :ref:`qgisfuzzifyrasternearmembership`,
   :ref:`qgisfuzzifyrasterpowermembership`
@@ -1702,7 +1723,7 @@ Basic parameters
      - Spread of the small function
    * - **Fuzzified raster**
      - ``OUTPUT``
-     - [same as input]
+     - [raster]
 
        Default: ``[Save to temporary file]``
      - Specification of the output raster. :ref:`One of <output_parameter_widget>`:
@@ -1726,6 +1747,8 @@ Advanced parameters
    * - **Creation options**
 
        Optional
+
+       ``Added in 3.40``
      - ``CREATION_OPTIONS`` (for QGIS <= 3.42, this was ``CREATE_OPTIONS``)
      - [string]
 
@@ -1753,7 +1776,7 @@ Outputs
      - Description
    * - **Fuzzified raster**
      - ``OUTPUT``
-     - [same as input]
+     - [raster]
      - Output raster layer containing the result
    * - **CRS authority identifier**
      - ``CRS_AUTHID``
@@ -1789,6 +1812,7 @@ Python code
 
 Gaussian blur
 ----------------------
+``Added in 4.0```
 
 Applies a Gaussian blur filter to an input raster layer.
 The radius parameter controls the strength of the blur.
@@ -2023,6 +2047,8 @@ Advanced parameters
    * - **Creation options**
 
        Optional
+
+       ``Added in 3.40``
      - ``CREATION_OPTIONS`` (for QGIS <= 3.42, this was ``CREATE_OPTIONS``)
      - [string]
 
@@ -2185,6 +2211,11 @@ NoData pixel in the output raster.
 If the :guilabel:`Treat NoData values as false` option is checked,
 then NoData inputs will be treated the same as a ``0`` input value.
 
+.. figure:: img/rasterbooleanAND.png
+  :align: center
+
+  Raster boolean AND example.
+
 .. seealso:: :ref:`qgisrasterbooleanor`
 
 Parameters
@@ -2262,6 +2293,8 @@ Advanced parameters
    * - **Creation options**
 
        Optional
+
+       ``Added in 3.40``
      - ``CREATION_OPTIONS`` (for QGIS <= 3.42, this was ``CREATE_OPTIONS``)
      - [string]
 
@@ -2339,11 +2372,11 @@ Python code
 
 Raster boolean OR
 ----------------------
-Calculates the boolean ``OR`` for a set of input rasters.
-If all of the input rasters have a zero value for a pixel, that
-pixel will be set to ``0`` in the output raster.
-If any of the input rasters have ``1`` values for the pixel it will
-be set to ``1`` in the output raster.
+Calculates the boolean OR for a set of input rasters.
+If any of the input rasters have a non-zero value for a pixel,
+that pixel will be set to 1 in the output raster.
+If all the input rasters have 0 values for the
+pixel it will be set to 0 in the output raster.
 
 The reference layer parameter specifies an existing raster layer to
 use as a reference when creating the output raster.
@@ -2354,6 +2387,11 @@ By default, a NoData pixel in ANY of the input layers will result in a
 NoData pixel in the output raster.
 If the :guilabel:`Treat NoData values as false` option is checked,
 then NoData inputs will be treated the same as a ``0`` input value.
+
+.. figure:: img/rasterbooleanOR.png
+  :align: center
+
+  Raster boolean OR example.
 
 .. seealso:: :ref:`qgisrasterbooleanand`
 
@@ -2432,6 +2470,8 @@ Advanced parameters
    * - **Creation options**
 
        Optional
+
+       ``Added in 3.40``
      - ``CREATION_OPTIONS`` (for QGIS <= 3.42, this was ``CREATE_OPTIONS``)
      - [string]
 
@@ -2650,6 +2690,7 @@ Python code
 
 Raster calculator (virtual)
 ---------------------------
+``Added in 3.34``
 
 Performs algebraic operations using raster layers and generates in-memory result.
 
@@ -3325,7 +3366,7 @@ Python code
 
 Raster rank
 ----------------
-|344|
+``Added in 3.44``
 
 Performs a cell-by-cell analysis in which output values match
 the rank of a sorted list of overlapping cell values from input layers.
@@ -3702,6 +3743,8 @@ Advanced parameters
    * - **Creation options**
 
        Optional
+
+       ``Added in 3.40``
      - ``CREATION_OPTIONS`` (for QGIS <= 3.42, this was ``CREATE_OPTIONS``)
      - [string]
 
@@ -3847,6 +3890,8 @@ Advanced parameters
    * - **Creation options**
 
        Optional
+
+       ``Added in 3.40``
      - ``CREATION_OPTIONS`` (for QGIS <= 3.42, this was ``CREATE_OPTIONS``)
      - [string]
 
@@ -3976,6 +4021,8 @@ Advanced parameters
    * - **Creation options**
 
        Optional
+
+       ``Added in 3.40``
      - ``CREATION_OPTIONS`` (for QGIS <= 3.42, this was ``CREATE_OPTIONS``)
      - [string]
 
@@ -4115,6 +4162,8 @@ Advanced parameters
    * - **Creation options**
 
        Optional
+
+       ``Added in 3.40``
      - ``CREATION_OPTIONS`` (for QGIS <= 3.42, this was ``CREATE_OPTIONS``)
      - [string]
 
@@ -4322,6 +4371,8 @@ Python code
 
 Zonal Minimum/Maximum Point
 ---------------------------
+``Added in 3.42``
+
 Extracts point features corresponding to the minimum and maximum pixel values within polygon zones.
 
 The output will contain one point feature for the minimum and one for the maximum raster value
@@ -4496,7 +4547,7 @@ Python code
 
 Feature preserving DEM smoothing
 --------------------------------
-|400|
+``Added in 4.0``
 
 Can be used to remove surface roughness from digital elevation model without significantly altering sharp
 features such as breaks-in-slope, stream banks, or terrace scarps. This makes this algorithm superior to
@@ -4646,27 +4697,3 @@ Python code
 .. include:: ../algs_include.rst
   :start-after: **algorithm_code_section**
   :end-before: **end_algorithm_code_section**
-
-
-.. |344| replace:: ``NEW in 3.44``
-.. |gaussian_formula| image:: img/fuzzy_gaussian_formula.png
-   :height: 1.5em
-.. |fuzzy_large_formula| image:: img/fuzzy_large_formula.png
-   :height: 3.2em
-.. |fuzzy_linear_formula| image:: img/fuzzy_linear_formula.png
-   :height: 3.8em
-.. |near_formula| image:: img/fuzzy_near_formula.png
-   :height: 2.5em
-.. |power_formula| image:: img/fuzzy_power_formula.png
-   :height: 4.4em
-.. |small_formula| image:: img/fuzzy_small_formula.png
-   :height: 3.2em
-
-
-.. Substitutions definitions - AVOID EDITING PAST THIS LINE
-   This will be automatically updated by the find_set_subst.py script.
-   If you need to create a new substitution manually,
-   please add it also to the substitutions.txt file in the
-   source folder.
-
-.. |400| replace:: ``NEW in 4.0``
