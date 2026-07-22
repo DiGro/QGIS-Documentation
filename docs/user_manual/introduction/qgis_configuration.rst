@@ -1065,20 +1065,30 @@ for any :guilabel:`3D Map view`. These can refer to:
     Depending on the selected mode, :ref:`navigation commands <3d_navigation>` differ.
   * :guilabel:`Movement speed`
   * :guilabel:`Invert vertical axis`: Controls whether vertical axis movements
-    should be inverted from their normal behaviour. Only affects movement in the
-    :guilabel:`Walk mode`. It can be set to:
+    should be inverted from their normal behaviour. Each of
+    the following scenarios can be enabled or disabled independently:
 
-    * :guilabel:`Never`
-    * :guilabel:`Only when dragging`: causes the vertical motion to inverted only
-      when performing a click-and-drag camera rotation
-    * and :guilabel:`Always`: causes the motions to be inverted when both
-      click-and-dragging and when the camera movement is locked to the cursor
-      (via a :kbd:`~` key press)
+    * :guilabel:`When rotating (mouse captured)`: inverts the vertical
+      camera movement when the cursor is captured
+      in :guilabel:`Walk mode` (activated by pressing :kbd:`~`)
+    * :guilabel:`When rotating (while dragging)`: inverts the vertical
+      camera movement when rotating the camera via click-and-drag in
+      :guilabel:`Walk mode`
+    * :guilabel:`When pivoting around terrain`: inverts the vertical
+      camera movement when rotating the view around a point on the
+      terrain in :guilabel:`Terrain mode`
+
+    By default, none are selected and the axis is not inverted in any
+    navigation mode.
 
 * Under :guilabel:`Graphics memory`, the  :guilabel:`Allowed memory per layer` option
   lets you set the GPU memory limit configuration on each layer.
   This is useful for users utilizing large 3D scenes which exhaust the available GPU memory resources.
   When a limit is hit, a warning is also displayed, which should assist in troubleshooting large scenes.
+* Under :guilabel:`Rendering`, check |checkbox| :guilabel:`Enable multisample anti-aliasing (MSAA)`
+  to smooth the jagged edges of 3D objects.
+  Enabling this option improves the visual quality of 3D rendering,
+  but may impact performance on less powerful graphics hardware.
 
 
 .. index:: Colors
@@ -1710,7 +1720,7 @@ But you can create as many user profiles as you want:
    * and ``<UserProfiles>`` represents the main profiles folder, i.e.:
 
      * |nix| :file:`.local/share/QGIS/QGIS4/profiles/`
-     * |win| :file:`%AppData%\\Roaming\\QGIS\\QGIS4\\profiles\\`
+     * |win| :file:`AppData\\Roaming\\QGIS\\QGIS4\\profiles\\`
      * |osx| :file:`Library/Application Support/QGIS/QGIS4/profiles/`
 
    The user profile folder can be opened from within QGIS using the
@@ -2713,7 +2723,7 @@ only the first found file will be used:
   or settings environment variable. Depending on the OS, it is:
 
   * |nix| :file:`$HOME/.local/share/QGIS/QGIS4/`
-  * |win| :file:`C:\\Users\\<username>\\%AppData%\\Roaming\\QGIS\\QGIS4\\`
+  * |win| :file:`C:\\Users\\<username>\\AppData\\Roaming\\QGIS\\QGIS4\\`
   * |osx| :file:`$HOME/Library/Application Support/QGIS/QGIS4/`
 * the installation directory, i.e., :file:`your_QGIS_package_path/resources/qgis_global_settings.ini`.
 

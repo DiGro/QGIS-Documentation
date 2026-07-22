@@ -6,6 +6,7 @@
    in the resources/function_help/json/ folder in the
    qgis/QGIS repository.
 
+
 .. _expression_function_Date_and_Time_age:
 
 age
@@ -14,8 +15,6 @@ age
 Returns the difference between two dates or datetimes.
 
 The difference is returned as an ``Interval`` and needs to be used with one of the following functions in order to extract useful information:
-
-
 
 * ``year``
 * ``month``
@@ -202,7 +201,6 @@ Formats a date type or string into a custom string format. Uses Qt date/time for
 
 
          These expressions may be used for the time part of the format string:
-
 
          .. csv-table::
             :header-rows: 1

@@ -441,6 +441,18 @@ Parameters
      - ``INPUT``
      - [vector: polygon]
      - Input polygon vector layer
+   * - **Extend endpoints to the polygon boundary**
+
+
+       ``Added in 4.2``
+     - ``EXTEND_TO_EDGES``
+     - [boolean]
+
+       Default: False
+     - Extends the medial axis so that its endpoints reach the boundary of the input polygon
+
+       .. attention:: Using this method requires QGIS installed with SFCGAL_ >= 2.3
+         (see :menuselection:`Help --> About` menu).
    * - **Medial axis**
      - ``OUTPUT``
      - [vector: line]
@@ -1256,17 +1268,21 @@ Python code
   :start-after: **algorithm_code_section**
   :end-before: **end_algorithm_code_section**
 
+.. _qgisconcavehullbyfeature:
 
-.. _qgisconcavehull:
+Concave hull (by feature)
+---------------------------
 
-Concave hull
-------------
-Computes the concave hull of the features from an input point layer.
+``Added in 3.44``
 
-.. figure:: img/concave_hull_threshold.png
+Calculates the concave hull for each multipoint feature in an input layer.
+See the :ref:`qgisconcavehull` algorithm for a concave hull calculation
+which covers the whole layer.
+
+.. figure:: img/concave_hull_byfeature.png
     :align: center
 
-    Concave hulls with different thresholds (0.3, 0.6, 0.9)
+    Concave hulls by feature
 
 
 .. seealso:: :ref:`qgisconvexhull`
@@ -1283,7 +1299,91 @@ Parameters
      - Name
      - Type
      - Description
-   * - **Input point layer**
+   * - **Input layer**
+     - ``INPUT``
+     - [vector: point]
+     - Input vector layer with multipoint features
+   * - **Threshold**
+     - ``ALPHA``
+     - [numeric: double]
+
+       Default: 0.3
+     - Number from 0 (maximum concave hull) to 1 (convex hull).
+
+       .. figure:: img/concave_hull_byfeature_threshold.png
+          :align: center
+          :width: 100%
+
+          Concave hulls with different thresholds (0.3, 0.6, 0.9)
+   * - **Allow holes**
+     - ``HOLES``
+     - [boolean]
+
+       Default: True
+     - Choose whether to allow holes in the final concave hull
+   * - **Concave hulls**
+     - ``OUTPUT``
+     - [vector: polygon]
+
+       Default: ``[Create temporary layer]``
+     - Specify the output vector layer. :ref:`One of <output_parameter_widget>`:
+
+       .. include:: ../algs_include.rst
+          :start-after: **layer_output_types**
+          :end-before: **end_layer_output_types**
+
+
+Outputs
+.......
+
+.. list-table::
+   :header-rows: 1
+   :widths: 20 20 20 40
+   :class: longtable
+
+   * - Label
+     - Name
+     - Type
+     - Description
+   * - **Concave hulls**
+     - ``OUTPUT``
+     - [vector: polygon]
+     - The output vector layer with polygons covering individual multipoint features.
+       Area and perimeter fields are added.
+
+Python code
+...........
+
+**Algorithm ID**: ``native:concavehullbyfeature``
+
+.. include:: ../algs_include.rst
+  :start-after: **algorithm_code_section**
+  :end-before: **end_algorithm_code_section**
+
+.. _qgisconcavehull:
+
+Concave hull (by layer)
+---------------------------
+
+Computes the concave hull covering all features from an input point layer.
+See the :ref:`qgisconcavehullbyfeature` algorithm for a concave hull calculation
+which covers individual features from a layer.
+
+.. seealso:: :ref:`qgisconvexhull`
+
+Parameters
+..........
+
+.. list-table::
+   :header-rows: 1
+   :widths: 20 20 20 40
+   :class: longtable
+
+   * - Label
+     - Name
+     - Type
+     - Description
+   * - **Input layer**
      - ``INPUT``
      - [vector: point]
      - Input point vector layer
@@ -1293,6 +1393,12 @@ Parameters
 
        Default: 0.3
      - Number from 0 (maximum concave hull) to 1 (convex hull).
+
+       .. figure:: img/concave_hull_threshold.png
+          :align: center
+          :width: 100%
+
+          Concave hulls with different thresholds (0.3, 0.6, 0.9)
    * - **Allow holes**
      - ``HOLES``
      - [boolean]
@@ -1333,7 +1439,7 @@ Outputs
    * - **Concave hull**
      - ``OUTPUT``
      - [vector: polygon]
-     - The output vector layer
+     - The output vector layer covering all features from an input point layer.
 
 Python code
 ...........
@@ -1343,7 +1449,6 @@ Python code
 .. include:: ../algs_include.rst
   :start-after: **algorithm_code_section**
   :end-before: **end_algorithm_code_section**
-
 
 .. _qgisconvertgeometrytype:
 
@@ -3042,6 +3147,107 @@ Python code
 ...........
 
 **Algorithm ID**: ``native:extractzvalues``
+
+.. include:: ../algs_include.rst
+  :start-after: **algorithm_code_section**
+  :end-before: **end_algorithm_code_section**
+
+
+.. _qgisextrude:
+
+Extrude
+--------------------------
+
+``Added in 4.2``
+
+Generates 3D geometries by extruding 2D polygon features along a specified direction.
+
+Each feature is displaced according to the X, Y, and Z extrusion parameters: X and Y control the horizontal displacement,
+while Z controls the vertical elevation. Setting only the Z parameter produces vertical extrusions,
+whereas combining X, Y, and Z allows the creation of non-vertical extrusions.
+Negative values are supported, enabling extrusions in the opposite direction.
+
+If the input features already carry Z values, those values are preserved and used as the base elevation of the extruded geometry.
+
+For MultiPolygon geometries, each part is extruded separately, producing one output feature per part.
+
+Output geometries are of type PolyhedralSurfaceZ, representing the extruded surface of each input feature.
+
+.. attention:: Running this algorithm requires QGIS installed with SFCGAL_ >= 2.0
+   (see :menuselection:`Help --> About` menu).
+
+.. figure:: img/extrude.png
+   :align: center
+
+   The left image shows a 2D polygon, while the right image shows the polygon extruded along the Z direction.
+
+
+Parameters
+..........
+
+.. list-table::
+   :header-rows: 1
+   :widths: 20 20 20 40
+   :class: longtable
+
+   * - Label
+     - Name
+     - Type
+     - Description
+   * - **Input layer**
+     - ``INPUT``
+     - [vector: polygon]
+     - Input vector layer
+   * - **Extrusion (x-axis)**
+     - ``EXTRUDE_X``
+     - [numeric: double] |dataDefine|
+
+       Default: 0
+     - Specify the extrusion value along the X-axis
+   * - **Extrusion (y-axis)**
+     - ``EXTRUDE_Y``
+     - [numeric: double] |dataDefine|
+
+       Default: 0
+     - Specify the extrusion value along the Y-axis
+   * - **Extrusion (z-axis)**
+     - ``EXTRUDE_Z``
+     - [numeric: double] |dataDefine|
+
+       Default: 0
+     - Specify the extrusion value along the Z-axis
+   * - **Extrusion**
+     - ``OUTPUT``
+     - [vector: 3D polygon]
+
+       Default: ``[Create temporary layer]``
+     - Specify the output vector layer. :ref:`One of <output_parameter_widget>`:
+
+       .. include:: ../algs_include.rst
+          :start-after: **layer_output_types_append**
+          :end-before: **end_layer_output_types_append**
+
+Outputs
+.......
+
+.. list-table::
+   :header-rows: 1
+   :widths: 20 20 20 40
+   :class: longtable
+
+   * - Label
+     - Name
+     - Type
+     - Description
+   * - **Extrusion**
+     - ``OUTPUT``
+     - [vector: 3D polygon]
+     - The output layer containing the extruded polygon features.
+
+Python code
+...........
+
+**Algorithm ID**: ``native:extrude``
 
 .. include:: ../algs_include.rst
   :start-after: **algorithm_code_section**

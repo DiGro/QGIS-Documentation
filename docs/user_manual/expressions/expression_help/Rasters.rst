@@ -6,6 +6,7 @@
    in the resources/function_help/json/ folder in the
    qgis/QGIS repository.
 
+
 .. _expression_function_Rasters_raster_attributes:
 
 raster_attributes
@@ -45,8 +46,6 @@ Returns statistics from a raster layer.
      - * **layer** - a string, representing either a raster layer name or layer ID
        * **band** - integer representing the band number from the raster layer, starting at 1
        * **property** - a string corresponding to the property to return. Valid options are:
-
-
 
          * min: minimum value
          * max: maximum value

@@ -476,6 +476,18 @@ identify actual holes in the data.
 
    Rendering data as a surface with map shading (left) and with map shading, filtering large triangles (right)
 
+.. _color_mod_pointcloud:
+
+Color Modification
+..................
+
+The :guilabel:`Color Modification` allows you to apply an expression to adjust
+the colors of the point cloud renderer. Any point cloud attribute can be used in the
+expression as a variable (e.g., ``@Green``, ``@Intensity``, ``@NumberOfReturns``)
+and the base color from the active renderer is available as ``@value``.
+Use the |expression| button to open the :guilabel:`Expression Builder` for help
+building your expression.
+
 .. _vpc_render:
 
 Virtual Point Cloud Options
@@ -492,6 +504,40 @@ You can control how the VPC is displayed when zoomed out using the available opt
 * :guilabel:`Show Extents Over Overview`: The extents are displayed on top of the overview.
 
 You can also choose to |checkbox| :guilabel:`Show tile labels` to display the tile names and set the label format.
+
+Use the :guilabel:`Overview Switching Scale` combobox to control at what zoom level
+QGIS transitions from rendering the tile extent or overview point cloud
+to loading the full detail of individual point clouds linked from the VPC,
+allowing you to balance visual detail against performance.
+The following options are available:
+
+* :guilabel:`Normal` (default): A balanced threshold suitable for most datasets and hardware.
+* :guilabel:`Earlier`: Detail loads sooner, while still at a broader zoom level.
+  Useful when overview quality is insufficient and hardware can handle the extra load.
+* :guilabel:`Much Earlier`: Detail loads aggressively even when zoomed out significantly.
+  Highest visual fidelity, but most demanding on memory and GPU resources.
+* :guilabel:`Later`: Detail loads only when zoomed well into the data.
+  Keeps the overview visible longer; best for large datasets or slower hardware.
+
+.. tip:: **When to change the default overview switching scale?**
+
+   Consider going with :guilabel:`Later` if:
+
+   * the map feels slow or laggy when panning
+   * you are working with very dense, large VPC datasets
+   * you mostly need an overview, not fine detail
+   * RAM or GPU memory is limited
+
+   Consider going with :guilabel:`Earlier` or :guilabel:`Much Earlier` if:
+
+   * the overview looks too coarse for your work
+   * you need full-resolution data visible earlier
+   * working with smaller, well-indexed VPC files
+   * you have plenty of RAM and a capable GPU
+
+.. note::
+   In the :guilabel:`3D Map` view, once all detailed tiles are fully loaded for the
+   current view, the overview is automatically disabled to conserve GPU resources.
 
 Layer Rendering
 ...............
@@ -569,6 +615,7 @@ Following options can be selected from the drop down menu at the top of the tab:
 
 .. figure:: img/point_cloud_3d_view.png
    :align: center
+   :width: 80%
 
    The point cloud 3D view tab with the classification renderer
 
@@ -600,7 +647,8 @@ options:
     sets in the vertical plan, the maximum height of a side of the triangles to consider
 * |checkbox| :guilabel:`Show bounding boxes`: Especially useful for debugging,
   shows bounding boxes of nodes in hierarchy
-
+* The :guilabel:`Overview Switching Scale` option is also available here.
+  See :ref:`vpc_render` for a full description of the available settings.
 
 .. _point_clouds_rendering:
 
@@ -820,6 +868,11 @@ Displaying and manipulating virtual point cloud is much more fluent and easy.
 At the core, a virtual point cloud file is a simple JSON file with :file:`.vpc` extension,
 containing references to actual data files (e.g. :file:`.LAS`, :file:`.LAZ` or :file:`.COPC` files)
 and additional metadata extracted from the files.
+
+Alternatively, the :file:`.vpz` format stores the same content as a compressed (zipped)
+:file:`.vpc` file, resulting in a smaller file size.
+This is particularly useful when working with large surveys or accessing data remotely.
+
 Even though it is possible to write VPC files by hand,
 it is strongly recommended to create them using an automated tool, such as:
 
@@ -915,6 +968,8 @@ After setting the attribute, value, and optional filter, digitize a selection us
 .. |editMetadata| image:: /static/common/editmetadata.png
    :width: 1.2em
 .. |elevationscale| image:: /static/common/elevationscale.png
+   :width: 1.5em
+.. |expression| image:: /static/common/mIconExpression.png
    :width: 1.5em
 .. |expressionFilter| image:: /static/common/mIconExpressionFilter.png
    :width: 1.5em

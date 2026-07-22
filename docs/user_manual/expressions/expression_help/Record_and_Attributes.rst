@@ -6,6 +6,7 @@
    in the resources/function_help/json/ folder in the
    qgis/QGIS repository.
 
+
 .. _expression_function_Record_and_Attributes_attribute:
 
 attribute
@@ -434,11 +435,11 @@ Returns the number of selected features on a given layer. By default works on th
    :widths: 15 85
 
    * - Syntax
-     - num_selected([layer:=current layer])
+     - num_selected([layer])
 
        [] marks optional arguments
    * - Arguments
-     - * **layer** - The layer (or its id or name) on which the selection will be checked.
+     - * **layer** - The layer (or its id or name) on which the selection will be checked. If not specified, the current layer is used.
    * - Examples
      - * ``num_selected()`` → The number of selected features on the current layer.
        * ``num_selected('streets')`` → The number of selected features on the layer streets

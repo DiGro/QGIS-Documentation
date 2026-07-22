@@ -70,14 +70,43 @@ The following tools are provided at the top of the 3D map view panel:
     * |checkbox| :guilabel:`Export textures`
 * |showPresets| :sup:`Set View Theme`: Allows you to select the set of layers to
   display in the map view from predefined :ref:`map themes <map_themes>`.
+
+.. _3d_mapview_cameramenu:
+
 * The |camera| :sup:`Camera` menu helps you control relation between the 2D and 3D views:
 
   * Synchronize the views (:guilabel:`2D map view follows 3D camera` and/or
     :guilabel:`3D camera follows 2D Map view`)
-  * :guilabel:`Show visible camera area in 2D map view`
+  * :guilabel:`Show visible camera area in 2D map view`: shows shaded triangular area
+    (in the map canvas and :ref:`2D map overlay <2d_map_overlay>`) that represents the direction of the camera.
+  * :guilabel:`Show 2D map overlay`: displays 2D map overlay in the 3D view
+    to indicate the current location of the 3D camera and provide spatial context.
   * :guilabel:`Set 3D scene on 2D map view`: allows to clip the 3D scene
     and display only the terrain and features intersecting an extent drawn on the 2D map canvas.
     More options are available in the :ref:`General configuration <scene_extent>` tab.
+  * :guilabel:`Camera controls`: allows you to control camera looking at XYZ in 3D map CRS coordinates.
+    This following options are shown in the modeless dialog:
+
+    * :guilabel:`Looking at X`: set the X coordinate of the point the camera is looking at
+    * :guilabel:`Looking at Y`: set the Y coordinate of the point the camera is looking at
+    * :guilabel:`Looking at Z`: set the Z coordinate of the point the camera is looking at
+    * :guilabel:`Distance from center`: controls how far the camera is from central point
+    * :guilabel:`Pitch`: controls how steep camera looks up and down
+    * :guilabel:`Heading`: controls the direction the camera faces
+
+    .. figure:: img/cameracontrolsdialog.png
+       :align: center
+       :width: 40%
+
+       Camera controls dialog.
+
+
+    If you check |unchecked| :guilabel:`Live update`, any changes will instantly be shown.
+    Otherwise, you will need to click :guilabel:`Apply` button to see changes you have made.
+    When you move camera by dragging or scrolling, the dialog numbers update automatically.
+    This happens in real-time, regardless of the :guilabel:`Live update` setting.
+* The |editCut| :sup:`Cross Section` menu provides these capabilities:
+
   * |editCut| :sup:`Cross Section Tool` creates a cross section in 3D scene by defining an area on the terrain in the 2D map canvas.
     Click to set the start point, move the mouse to define the line direction
     and click again to set the end point of the axis.
@@ -93,11 +122,11 @@ The following tools are provided at the top of the 3D map view panel:
     The direction (left or right) is determined by the orientation of the drawn line.
   * Use |editCutDisabled| :sup:`Disable Cross Section` to remove the cross section.
 * |shadow| :sup:`Effects` adds visual effects to the 3D rendering,
-  such as showing :ref:`shadows <shadows>`, :ref:`eye dome lighting <eye_dome_lighting>`
-  or :ref:`ambient occlusion <ambient_occlusion>`.
+  such as showing :ref:`shadows <shadows>`, :ref:`eye dome lighting <eye_dome_lighting>`,
+  :ref:`ambient occlusion <ambient_occlusion>` or :ref:`bloom lighting effect <bloom_lighting_effect>`.
 * The |options| :sup:`Configure...` button opens the dialog to configure
   the 3D map view :ref:`settings <scene_configuration>`.
-* |dock| :sup:`Dock 3D Map View`: switch from docked widget to top level window
+* |dock| :sup:`Dock 3D Map View`: switch from docked widget to top level window.
 
 .. _`scene_configuration`:
 
@@ -137,6 +166,52 @@ Under the |general| :guilabel:`General` tab, you can:
   when pressing the |zoomFullExtent| :sup:`Zoom full` button in 3D map view.
 * Check |checkbox| :guilabel:`Show in 2D map view` to display in the main map canvas
   a rubberband corresponding to the current extent of the 3D scene.
+* Set a :guilabel:`Background` for the 3D scene, choosing between:
+
+  * a :guilabel:`Gradient`, defined by a top and bottom color blended across the scene
+  * or a textured :guilabel:`Skybox`.
+
+    The :guilabel:`Distinct faces` skybox type allows you to assign a separate
+    texture image to each of the six sides of the box surrounding the scene
+    (:guilabel:`Left (-X)`, :guilabel:`Right (+X)`, :guilabel:`Front (+Y)`,
+    :guilabel:`Back (-Y)`, :guilabel:`Top (+Z)`, and :guilabel:`Down (-Z)`).
+
+    The :guilabel:`Convention` setting defines how the textures are mapped
+    to coordinate axes and oriented for compatibility with different 3D
+    engines and rendering frameworks. The following table describes the
+    available skybox coordinate conventions.
+
+    .. list-table:: Available skybox coordinate conventions
+       :widths: 40, 60
+       :header-rows: 1
+
+       * - Convention
+         - Axis orientation
+
+       * - Native (Z-Up)
+         - +X Right, +Y Forward, +Z Up
+
+       * - OpenGL / WebGL (Y-Up)
+         - +X Right, +Y Up, -Z Forward
+
+       * - Godot Engine (Y-Up)
+         - +X Right, +Y Up, -Z Forward
+
+       * - Unreal Engine (Z-Up)
+         - +X Forward, +Y Right, +Z Up
+
+       * - Unity Engine/Left-Handed (Y-Up)
+         - +X Right, +Y Up, +Z Forward
+
+
+    Texture image files of the skybox can be local files, remote URLs, or
+    embedded in the project (:ref:`more details <embedded_file_selector>`).
+
+    Check |unchecked|:guilabel:`Enable environmental lighting effects` to derive
+    the scene's lighting from the skybox's appearance, applying it to physically
+    based rendered materials. This option is only available when a skybox
+    background is used, and has no effect with gradient backgrounds. Use the
+    :guilabel:`Strength` slider to control its intensity.
 
 Terrain
 -------
@@ -239,6 +314,7 @@ Effects
 
 .. figure:: img/3dmapconfiguration_effects.png
    :align: center
+   :width: 70%
 
    The 3D Map Effects Configuration dialog
 
@@ -291,9 +367,37 @@ Effects
 
    From top, left to right: No effect -- SSAO only -- EDL only -- SSAO and EDL
 
+.. _bloom_lighting_effect:
 
-Camera & Skybox
----------------
+* |unchecked| :guilabel:`Show Bloom Lighting Effect`:
+  to brighten the 3D scene, particularly for self-lit objects, making them appear to emit light.
+  Adjust the :guilabel:`Strength` value to increase or decrease the brightness. You can also adjust
+  :guilabel:`Radius` to set how far the light spreads.
+
+.. figure:: img/3dmap_bloom_lighting_effect.png
+   :align: center
+   :width: 70%
+
+
+   Before and after enabling bloom lighting effect.
+
+.. _color_grading:
+
+* :guilabel:`Color Grading`: to balance exposure and enhance the details.
+  These parameters can be controlled:
+
+  * :guilabel:`Tone Mapping`: determines how extremely bright, High Dynamic Range (HDR)
+    colors are displayed on a standard monitor.
+    :guilabel:`Clamp HDR to SDR` converts High Dynamic Range (super bright light) to
+    Standard Dynamic Range (normal light). To make it look cinematic, select
+    :guilabel:`ACES (Film Look)`. This will add more contrast to the 3D scene.
+  * :guilabel:`Exposure Adjustment`: adjusts the overall brightness of the 3D scene.
+    A value of 0.0 leaves the original brightness unchanged. Positive values will
+    brighten the scene, while negative values will darken it.
+
+
+Camera
+------
 
 In this tab, you can control different parameters like camera, 3D axis, navigation
 synchronization and skybox.
@@ -302,6 +406,7 @@ synchronization and skybox.
 
 .. figure:: img/3dmapconfiguration_camera.png
    :align: center
+   :width: 70%
 
    The 3D Map Camera Configuration dialog
 
@@ -331,15 +436,22 @@ synchronization and skybox.
   2D view or bi directional synchronization. The last option displays the extent
   visible from the 3D camera over the 2D map view.
 
-* Check |unchecked| :guilabel:`Show skybox` to enable skybox rendering
-  in the scene. The skybox type can be:
 
-  * :guilabel:`Panoramic texture`, with a single file providing sight on 360\°
-  * :guilabel:`Distinct faces`, with a texture file for each of the six sides
-    of a box containing the scene
+.. _2d_map_overlay:
 
-  Texture image files of the skybox can be files on the disk, remote URLs or
-  embedded in the project (:ref:`more details <embedded_file_selector>`).
+* Check |unchecked|:guilabel:`Show 2D Map Overlay` to display a 2D map indicating
+  the current position of the 3D camera.
+  A 2D map with the camera frustum centered on it will appear in the left corner of the 3D view.
+  The shaded triangular area that shows where the 3D camera is currently looking at
+  is also displayed if :guilabel:`Show visible camera area in 2D map view` is enabled.
+  The options are also available in the :ref:`camera menu <3d_mapview_cameramenu>` as shortcuts.
+  To move the camera, drag the mouse until the view matches your desired perspective.
+
+  .. figure:: img/2dmap_overlay.png
+     :align: center
+
+     The 2D Map Overlay view
+
 
 Advanced
 --------
@@ -396,10 +508,10 @@ Advanced
     and docked in a :guilabel:`Corner`.
   * :guilabel:`Show camera info`:
 
-     * |unchecked| :guilabel:`Far plane`: controls how far from the camera rendering stops
-     * |unchecked| :guilabel:`Near plane`: controls how close to the camera rendering starts
-     * |unchecked| :guilabel:`Camera X/Y/Z pos`: sets the camera’s position in 3D space
-     * |unchecked| :guilabel:`Looking at X/Y/Z`: sets the target point the camera is looking at
+    * |unchecked| :guilabel:`Far plane`: controls how far from the camera rendering stops
+    * |unchecked| :guilabel:`Near plane`: controls how close to the camera rendering starts
+    * |unchecked| :guilabel:`Camera X/Y/Z pos`: sets the camera’s position in 3D space
+    * |unchecked| :guilabel:`Looking at X/Y/Z`: sets the target point the camera is looking at
 
 .. note:: When your 3D map view is open in a standalone window, you can
    use :kbd:`Ctrl+Shift+d` keyboard shortcut to access the debug panel.
@@ -505,6 +617,15 @@ Those layers will always face the camera, making it easier to read them
 when navigating the 3D scene. Lines and polygons annotations are not supported
 in 3D map views. See :ref:`3D view layer properties <annotationslayer_3dview>` for more details.
 
+Elevation profile curve in 3D map view
+=======================================
+
+The elevation profile curve can be displayed in the 3D map view.
+The Z values are derived from the minimum and maximum Z values
+of the data along the curve.
+Line and polygon rubberbands follow the cursor position when
+hovering over the elevation profile panel.
+See :ref:`Elevation profile view<label_elevation_profile_view>` for more details.
 
 .. _`QEasingCurve`: https://doc.qt.io/qt-6/qeasingcurve.html#EasingFunction-typedef
 

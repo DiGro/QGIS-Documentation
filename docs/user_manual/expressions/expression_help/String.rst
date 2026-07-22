@@ -6,6 +6,7 @@
    in the resources/function_help/json/ folder in the
    qgis/QGIS repository.
 
+
 .. _expression_function_String_backslash_quote:
 
 \\' (quote character)
@@ -156,7 +157,7 @@ Concatenates all but first arguments with separators into a single string. The f
    :widths: 15 85
 
    * - Syntax
-     - concat_ws(separator, string, string2, ...)
+     - concat_ws(separator, string1, string2, ...)
    * - Arguments
      - * **separator** - separator to use when concatenating non-null values
        * **string** - a string value
@@ -224,7 +225,6 @@ Formats a date type or string into a custom string format. Uses Qt date/time for
 
 
          These expressions may be used for the time part of the format string:
-
 
          .. csv-table::
             :header-rows: 1
@@ -712,7 +712,7 @@ Counts the number of occurrences of a substring within a string. By default, the
    :widths: 15 85
 
    * - Syntax
-     - substr_count(string, substring, [overlapping:=False])
+     - substr_count(string, substring, [overlapping:=false])
 
        [] marks optional arguments
    * - Arguments
@@ -840,12 +840,12 @@ Common use cases include normalizing text for search operations, creating ASCII-
 
 .. note:: This function is particularly useful when:
 
-* Searching or filtering data where accents should be ignored (e.g., 'Jose' matches 'José')
-* Creating URL-safe or filename-safe strings from internationalized text
-* Normalizing user input for consistent storage or comparison
-* Preparing text for systems with limited Unicode support
+   * Searching or filtering data where accents should be ignored (e.g., 'Jose' matches 'José')
+   * Creating URL-safe or filename-safe strings from internationalized text
+   * Normalizing user input for consistent storage or comparison
+   * Preparing text for systems with limited Unicode support
 
-The function uses Unicode NFC normalization internally to ensure consistent handling of composed and decomposed characters.
+   The function uses Unicode NFC normalization internally to ensure consistent handling of composed and decomposed characters.
 
 
 .. end_unaccent_section
